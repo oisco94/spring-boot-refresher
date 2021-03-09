@@ -1,19 +1,27 @@
 package com.example.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name="users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotBlank(message = "username is mandatory")
+    @Column(unique=true, length = 10)
     private String username;
+
+    @NotBlank(message = "password is mandatory")
     private String password;
     private boolean active;
+
+    @NotBlank(message = "roles is mandatory")
     private String roles;
 
     public int getId() {
