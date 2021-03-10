@@ -1,6 +1,4 @@
-package com.example.demo.domain;
-
-import com.sun.istack.NotNull;
+package com.example.demo.data.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

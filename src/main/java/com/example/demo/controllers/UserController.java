@@ -1,11 +1,11 @@
 package com.example.demo.controllers;
 
-import com.example.demo.domain.AuthenticationRequest;
-import com.example.demo.domain.AuthenticationResponse;
-import com.example.demo.domain.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.data.AuthenticationRequest;
+import com.example.demo.data.AuthenticationResponse;
+import com.example.demo.data.entity.User;
 import com.example.demo.services.UserService;
 import com.example.demo.util.JwtUtil;
+import com.example.demo.util.errors.UsernameTakenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +34,7 @@ public class UserController {
 
 
     @PostMapping("/user")
-    public ResponseEntity<String> createUser (@Valid @RequestBody User user) {
+    public ResponseEntity<String> createUser (@Valid @RequestBody User user) throws UsernameTakenException {
         userService.createUser(user);
         return ResponseEntity.ok("User is valid!!");
     }

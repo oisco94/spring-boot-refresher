@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.DemoApplication;
 import com.example.demo.controllers.UserController;
-import com.example.demo.domain.AuthenticationRequest;
-import com.example.demo.domain.User;
+import com.example.demo.data.AuthenticationRequest;
+import com.example.demo.data.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

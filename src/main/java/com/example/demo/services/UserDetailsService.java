@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
-import com.example.demo.domain.User;
-import com.example.demo.domain.UserDetailsCustom;
+import com.example.demo.data.entity.User;
+import com.example.demo.data.UserDetailsCustom;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
