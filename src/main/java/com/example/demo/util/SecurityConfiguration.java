@@ -3,6 +3,7 @@ package com.example.demo.util;
 import com.example.demo.util.filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,32 +34,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-//        http.cors().and().csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/admin").hasRole("ADMIN")
-//                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-//                .and()
-//                .formLogin().disable();
-
-
-        http.cors().and().csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/user").permitAll().
-                anyRequest().authenticated().and().
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/authenticate", "/user").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .anyRequest().authenticated().and().
                 exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

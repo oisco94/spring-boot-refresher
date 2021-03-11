@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="users")
+//@Table(name="users")
 public class User {
 
     @Id
@@ -19,7 +19,7 @@ public class User {
     private String password;
     private boolean active;
 
-    @NotBlank(message = "roles is mandatory")
+    @Column(columnDefinition = "varchar(100) default 'USER'")
     private String roles;
 
     public int getId() {
